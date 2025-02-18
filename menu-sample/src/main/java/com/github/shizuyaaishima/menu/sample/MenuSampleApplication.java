@@ -16,12 +16,23 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *   <li>H2データベースによるデータ永続化</li>
  *   <li>Flywayによるデータベースマイグレーション</li>
  * </ul>
+ * 
+ * @see SpringBootApplication Spring Bootアプリケーションの設定
+ * @see ComponentScan コンポーネントスキャンの設定
+ * @see EntityScan エンティティスキャンの設定
+ * @see EnableJpaRepositories JPAリポジトリの設定
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "com.github.shizuyaaishima.menu")
 @EntityScan(basePackages = "com.github.shizuyaaishima.menu.entity")
 @EnableJpaRepositories(basePackages = "com.github.shizuyaaishima.menu.repository")
 public class MenuSampleApplication {
+
+    /**
+     * デフォルトコンストラクタ。
+     */
+    public MenuSampleApplication() {
+    }
 
     /**
      * アプリケーションのエントリーポイント。

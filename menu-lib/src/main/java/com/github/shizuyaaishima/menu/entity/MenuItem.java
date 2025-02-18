@@ -9,6 +9,10 @@ import lombok.Builder;
 /**
  * メニュー項目を表すエンティティクラス。
  * Webアプリケーションのナビゲーションメニューの各項目を管理します。
+ * 
+ * @see Builder Builderパターンによるインスタンス生成
+ * @see NoArgsConstructor 引数なしコンストラクタ（JPAが使用）
+ * @see AllArgsConstructor 全フィールドを引数に取るコンストラクタ
  */
 @Entity
 @Table(name = "menu_items")

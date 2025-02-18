@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * メニュー項目のREST APIを提供するコントローラークラス。
  * メニュー項目の取得に関するエンドポイントを提供します。
+ * 
+ * @see RequiredArgsConstructor 必須フィールドを引数に取るコンストラクタを自動生成
  */
 @RestController
 @RequestMapping("/api/menu")

@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 /**
  * メニュー項目の業務ロジックを提供するサービスクラス。
  * メニュー項目の取得や管理に関する機能を提供します。
+ * 
+ * @see RequiredArgsConstructor 必須フィールドを引数に取るコンストラクタを自動生成
  */
 @Service
 @RequiredArgsConstructor
