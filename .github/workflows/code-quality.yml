@@ -1,1 +1,40 @@
- 
+name: Code Quality
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: JDKのセットアップ
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: コードスタイルチェック
+      run: ./gradlew spotlessCheck
+
+    - name: 静的解析
+      run: ./gradlew pmdMain pmdTest
+
+    - name: コードカバレッジ
+      run: ./gradlew test jacocoTestReport
+
+    - name: カバレッジレポートの保存
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: |
+          **/build/reports/jacoco/
+          **/build/reports/pmd/
+          **/build/reports/spotless/ 
