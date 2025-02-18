@@ -1,8 +1,9 @@
 name: Release
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -13,6 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: タグからバージョンを取得
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
     - name: JDKのセットアップ
       uses: actions/setup-java@v4
@@ -27,18 +32,19 @@ jobs:
         git update-index --chmod=+x gradlew
 
     - name: Gradleビルド
-      run: ./gradlew build
+      run: ./gradlew build -Pversion=${{ steps.get_version.outputs.VERSION }}
 
     - name: GitHubパッケージへの公開
-      run: ./gradlew publish
+      run: ./gradlew publish -Pversion=${{ steps.get_version.outputs.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: リリースアセットのアップロード
+    - name: リリースの作成
       uses: softprops/action-gh-release@v1
       with:
         files: |
           menu-lib/build/libs/*.jar
           menu-sample/build/libs/*.jar
+        generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
