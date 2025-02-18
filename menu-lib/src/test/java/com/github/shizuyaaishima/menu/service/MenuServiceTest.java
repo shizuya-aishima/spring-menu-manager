@@ -2,7 +2,7 @@ package com.github.shizuyaaishima.menu.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.github.shizuyaaishima.menu.TestConfig;
+import com.github.shizuyaaishima.menu.MenuTestConfiguration;
 import com.github.shizuyaaishima.menu.entity.MenuItem;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest(
-    classes = TestConfig.class,
+    classes = MenuTestConfiguration.class,
     properties = {"spring.flyway.enabled=true", "spring.jpa.hibernate.ddl-auto=validate"})
 @Transactional
 class MenuServiceTest {

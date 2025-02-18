@@ -22,14 +22,7 @@
     <!-- テストクラスに対するルールを調整 -->
     <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
         <properties>
-            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[matches(@Image, '.*Test.*')]"/>
-        </properties>
-    </rule>
-
-    <!-- テスト設定クラスに対するルールを調整 -->
-    <rule ref="category/java/bestpractices.xml/NoClassAttribute">
-        <properties>
-            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TestConfig']"/>
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[matches(@Image, '.*Test.*') or @Image='TestConfig']"/>
         </properties>
     </rule>
 </ruleset> 

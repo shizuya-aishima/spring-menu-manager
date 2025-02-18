@@ -3,7 +3,7 @@ package com.github.shizuyaaishima.menu.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.github.shizuyaaishima.menu.TestConfig;
+import com.github.shizuyaaishima.menu.MenuTestConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest(
-    classes = TestConfig.class,
+    classes = MenuTestConfiguration.class,
     properties = {"spring.flyway.enabled=true", "spring.jpa.hibernate.ddl-auto=validate"})
 @AutoConfigureMockMvc
 class MenuControllerTest {
