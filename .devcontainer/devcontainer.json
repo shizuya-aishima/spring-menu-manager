@@ -12,6 +12,13 @@
 			"installGradle": "true"
 		},
 		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vmware.vscode-boot-dev-pack"
+			]
+		}
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
