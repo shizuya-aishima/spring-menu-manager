@@ -1,7 +1,7 @@
-package com.example.menu.service;
+package com.github.shizuyaaishima.menu.service;
 
-import com.example.menu.entity.MenuItem;
-import com.example.menu.repository.MenuItemRepository;
+import com.github.shizuyaaishima.menu.entity.MenuItem;
+import com.github.shizuyaaishima.menu.repository.MenuItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

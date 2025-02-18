@@ -1,7 +1,7 @@
-package com.example.menu.controller;
+package com.github.shizuyaaishima.menu.controller;
 
-import com.example.menu.entity.MenuItem;
-import com.example.menu.service.MenuService;
+import com.github.shizuyaaishima.menu.entity.MenuItem;
+import com.github.shizuyaaishima.menu.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

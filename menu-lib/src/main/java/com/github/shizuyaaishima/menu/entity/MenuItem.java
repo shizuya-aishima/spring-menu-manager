@@ -1,4 +1,4 @@
-package com.example.menu.entity;
+package com.github.shizuyaaishima.menu.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

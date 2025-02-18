@@ -1,6 +1,6 @@
-package com.example.menu.repository;
+package com.github.shizuyaaishima.menu.repository;
 
-import com.example.menu.entity.MenuItem;
+import com.github.shizuyaaishima.menu.entity.MenuItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

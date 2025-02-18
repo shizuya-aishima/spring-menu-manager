@@ -13,4 +13,36 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+            artifactId = 'spring-menu-manager'
+            pom {
+                name = 'Spring Menu Manager'
+                description = 'A library for managing web application navigation menus'
+                url = 'https://github.com/shizuya-aishima/spring-menu-manager'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'shizuya-aishima'
+                        name = 'Shizuya Aishima'
+                        email = 'shizuya.aishima@example.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/shizuya-aishima/spring-menu-manager.git'
+                    developerConnection = 'scm:git:ssh://github.com/shizuya-aishima/spring-menu-manager.git'
+                    url = 'https://github.com/shizuya-aishima/spring-menu-manager'
+                }
+            }
+        }
+    }
 } 

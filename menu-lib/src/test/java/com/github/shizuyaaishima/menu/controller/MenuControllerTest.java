@@ -1,6 +1,6 @@
-package com.example.menu.controller;
+package com.github.shizuyaaishima.menu.controller;
 
-import com.example.menu.TestConfig;
+import com.github.shizuyaaishima.menu.TestConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
