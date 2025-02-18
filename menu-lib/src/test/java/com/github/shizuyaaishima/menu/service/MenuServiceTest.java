@@ -2,7 +2,6 @@ package com.github.shizuyaaishima.menu.service;
 
 import com.github.shizuyaaishima.menu.TestConfig;
 import com.github.shizuyaaishima.menu.entity.MenuItem;
-import com.github.shizuyaaishima.menu.repository.MenuItemRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,17 +27,18 @@ class MenuServiceTest {
     @Test
     void getAllMenuItems_正常系() {
         List<MenuItem> items = menuService.getAllMenuItems();
-        assertNotNull(items);
-        assertTrue(items.size() >= 3); // サンプルデータで3件投入されているため
-        assertTrue(items.stream().allMatch(MenuItem::isEnabled));
+        assertNotNull(items, "メニュー項目のリストがnullです");
+        assertTrue(items.size() >= 3, "メニュー項目が3件以上存在する必要があります");
+        assertTrue(items.stream().allMatch(MenuItem::isEnabled), "全てのメニュー項目が有効である必要があります");
     }
 
     @Test
     void getRootMenuItems_正常系() {
         List<MenuItem> rootItems = menuService.getRootMenuItems();
-        assertNotNull(rootItems);
-        assertEquals(2, rootItems.size()); // ホームと設定の2件
-        assertTrue(rootItems.stream().allMatch(item -> item.getParentId() == null));
+        assertNotNull(rootItems, "ルートメニュー項目のリストがnullです");
+        assertEquals(2, rootItems.size(), "ルートメニュー項目は2件存在する必要があります");
+        assertTrue(rootItems.stream().allMatch(item -> item.getParentId() == null), 
+            "全てのルートメニュー項目の親IDがnullである必要があります");
     }
 
     @Test
@@ -48,11 +48,12 @@ class MenuServiceTest {
                 .filter(item -> "設定".equals(item.getName()))
                 .findFirst()
                 .map(MenuItem::getId)
-                .orElseThrow();
+                .orElseThrow(() -> new AssertionError("設定メニューが見つかりません"));
 
         List<MenuItem> subItems = menuService.getSubMenuItems(settingsId);
-        assertNotNull(subItems);
-        assertEquals(1, subItems.size()); // プロフィール設定の1件
-        assertEquals("プロフィール設定", subItems.get(0).getName());
+        assertNotNull(subItems, "サブメニュー項目のリストがnullです");
+        assertEquals(1, subItems.size(), "サブメニュー項目は1件存在する必要があります");
+        assertEquals("プロフィール設定", subItems.get(0).getName(), 
+            "サブメニュー項目の名前が「プロフィール設定」である必要があります");
     }
-} 
+}

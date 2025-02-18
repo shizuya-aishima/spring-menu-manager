@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>Custom rules for the project</description>
+
+    <!-- エラーの可能性が高いコードを検出するルール -->
+    <rule ref="category/java/errorprone.xml"/>
+
+    <!-- ベストプラクティスに関するルール -->
+    <rule ref="category/java/bestpractices.xml">
+        <!-- テストクラスに関する警告を除外 -->
+        <exclude name="JUnit4TestShouldUseTestAnnotation"/>
+        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="JUnitUseExpected"/>
+        <exclude name="JUnitTestContainsTooManyAsserts"/>
+    </rule>
+
+    <!-- テストクラスに対するルールを調整 -->
+    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
+        <properties>
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[matches(@Image, '.*Test.*')]"/>
+        </properties>
+    </rule>
+
+    <!-- テスト設定クラスに対するルールを調整 -->
+    <rule ref="category/java/bestpractices.xml/NoClassAttribute">
+        <properties>
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TestConfig']"/>
+        </properties>
+    </rule>
+</ruleset> 
