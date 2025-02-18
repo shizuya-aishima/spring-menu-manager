@@ -65,19 +65,6 @@ subprojects {
         useJUnitPlatform()
         finalizedBy jacocoTestReport
     }
-
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/shizuya-aishima/spring-menu-manager")
-                credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-                }
-            }
-        }
-    }
 }
 
 dependencies {
