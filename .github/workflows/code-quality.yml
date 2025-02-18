@@ -20,6 +20,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Gradleラッパーのパーミッション設定
+      run: |
+        chmod +x ./gradlew
+        git update-index --chmod=+x gradlew
+
     - name: コードスタイルチェック
       run: ./gradlew spotlessCheck
 
