@@ -60,6 +60,37 @@ public class YourApplication {
 - `GET /api/menu/root`: ルートメニュー項目の取得
 - `GET /api/menu/sub/{parentId}`: 特定の親メニューのサブメニュー項目の取得
 
+詳細なAPI仕様は[OpenAPI定義](menu-lib/src/main/resources/openapi.yaml)を参照してください。
+
+### レスポンス例
+
+```json
+[
+  {
+    "id": 1,
+    "name": "ホーム",
+    "url": "/",
+    "displayOrder": 1,
+    "parentId": null,
+    "icon": "home",
+    "enabled": true,
+    "createdAt": "2024-02-20T10:00:00",
+    "updatedAt": "2024-02-20T10:00:00"
+  },
+  {
+    "id": 2,
+    "name": "設定",
+    "url": "/settings",
+    "displayOrder": 2,
+    "parentId": null,
+    "icon": "settings",
+    "enabled": true,
+    "createdAt": "2024-02-20T10:00:00",
+    "updatedAt": "2024-02-20T10:00:00"
+  }
+]
+```
+
 ## データベースマイグレーション
 
 Flywayを使用してデータベースのマイグレーションを管理しています。
