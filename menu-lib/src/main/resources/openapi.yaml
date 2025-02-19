@@ -1,1 +1,120 @@
- 
+ openapi: 3.0.3
+info:
+  title: Spring Menu Manager API
+  description: |
+    Spring Boot用のメニュー管理ライブラリのAPI仕様です。
+    Webアプリケーションのナビゲーションメニューを管理するためのRESTful APIを提供します。
+  version: 0.0.1-SNAPSHOT
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080
+    description: ローカル開発サーバー
+
+tags:
+  - name: menu
+    description: メニュー項目の管理
+
+paths:
+  /api/menu:
+    get:
+      tags:
+        - menu
+      summary: 全メニュー項目の取得
+      description: 有効な全てのメニュー項目を表示順で取得します。
+      operationId: getAllMenuItems
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+
+  /api/menu/root:
+    get:
+      tags:
+        - menu
+      summary: ルートメニュー項目の取得
+      description: トップレベルのメニュー項目（親を持たないメニュー項目）を取得します。
+      operationId: getRootMenuItems
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+
+  /api/menu/sub/{parentId}:
+    get:
+      tags:
+        - menu
+      summary: サブメニュー項目の取得
+      description: 指定された親メニューに属するサブメニュー項目を取得します。
+      operationId: getSubMenuItems
+      parameters:
+        - name: parentId
+          in: path
+          description: 親メニューのID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+
+components:
+  schemas:
+    MenuItem:
+      type: object
+      description: メニュー項目を表すモデル
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: メニュー項目のID
+        name:
+          type: string
+          description: メニュー項目の名前
+        url:
+          type: string
+          description: メニュー項目のURL
+        displayOrder:
+          type: integer
+          description: 表示順序（小さい順に表示）
+        parentId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 親メニューのID（トップレベルのメニューの場合はnull）
+        icon:
+          type: string
+          nullable: true
+          description: メニュー項目のアイコン（オプション）
+        enabled:
+          type: boolean
+          description: メニュー項目の有効/無効状態
+        createdAt:
+          type: string
+          format: date-time
+          description: レコード作成日時
+        updatedAt:
+          type: string
+          format: date-time
+          description: レコード更新日時
+      required:
+        - name
